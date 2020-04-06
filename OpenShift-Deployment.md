@@ -8,7 +8,7 @@ This is a cheat sheet for deploying applications using *OpenShift*.
   > The used version for this is *oc v3.7.72* \
   > Here' s the link to the [official Documentation](https://docs.openshift.com/container-platform/3.7/dev_guide/index.html)
   
-  ## 1. Pods 
+  ## 1. First Pods 
   ### Stating with project
   Login to plateform : `oc login (link_to_plateform)` \
   Get version : `oc version` \
@@ -39,4 +39,13 @@ This is a cheat sheet for deploying applications using *OpenShift*.
   ### Deleting pods
   Delete : `oc delete pod (name)` \ 
   Delete with label : `oc delete all -l (label=value)`
+  
+  ## 5. Environment customization
+  The goal is to be able to promote the application across various environments.
+  > Application promotion means moving the app through different runtime environements (Development -> Stage -> Production). 
+  > It requires customizing the application accordingly. This can be done \
+  > **staticly** : at startup by setting environment variable on the pod config. \
+  > **dynamically** : contiously reading and updating app behaviour, by defining the configuration in a separate object (from the pod) called the ConfigMap. 
+  
+  Get configMaps : `oc get cm` \
   
