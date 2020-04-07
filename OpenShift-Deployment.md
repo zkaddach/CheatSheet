@@ -86,4 +86,6 @@ This is a cheat sheet for deploying applications using *OpenShift*.
   Create a secret : `oc create secret generic (name:user) --from-literal (VAR=val:WHO="Hidden User")` \
   Configure app to read secret : `oc set env (dc/name:dc/dateloop) --from (secret/name:secret/user)`
   
-  
+  ### Dynamic configuration 
+  Create blueprinted ConfigMap : `oc apply -f configmaps/nameDynamicConfigMap` \ 
+  Deploy using ConfigMap : `oc apply -f dynamicTemplateApp`
