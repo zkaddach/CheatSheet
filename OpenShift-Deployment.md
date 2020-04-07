@@ -82,5 +82,8 @@ This is a cheat sheet for deploying applications using *OpenShift*.
   Create a ConfigMap : `oc create configmap (name:params) --from-literal (VAR=val:PERIOD=2)` \
   Configure the app to read the ConfigMap : `oc set env (dc/name) --from=(configmap/name:configmap/params)` 
   
+  ### Using Secrets
+  Create a secret : `oc create secret generic (name:user) --from-literal (VAR=val:WHO="Hidden User")` \
+  Configure app to read secret : `oc set env (dc/name:dc/dateloop) --from (secret/name:secret/user)`
   
   
