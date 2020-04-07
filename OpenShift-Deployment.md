@@ -68,9 +68,19 @@ This is a cheat sheet for deploying applications using *OpenShift*.
   > **staticly** : at startup by setting environment variable on the pod config. \
   > **dynamically** : contiously reading and updating app behaviour, by defining the configuration in a separate object (from the pod) called the ConfigMap. 
   
+  ### Configuring App using templates
   Get configMaps : `oc get cm` \
   Checking deployment configuration :   `oc export dc (name)`
   
-  Setting Environement variable : `oc set env dc (name) -e VAR=value`
+  Setting Environement variable : `oc set env dc (name) -e VAR=value` \ 
+  Instantiante template : 
+  ```
+  oc process -f (templateFile) --param-file (parametersFile) (VAR=val) | oc apply -f -
+  ```
+  
+  ### Using ConfigMaps
+  Create a ConfigMap : `oc create configmap (name:params) --from-literal (VAR=val:PERIOD=2)` \
+  Configure the app to read the ConfigMap : `oc set env (dc/name) --from=(configmap/name:configmap/params)` 
+  
   
   
