@@ -6,7 +6,8 @@ This is a cheat sheet for deploying applications using *OpenShift*.
   
   
   > The used version for this is *oc v3.7.72* \
-  > Here' s the link to the [official Documentation](https://docs.openshift.com/container-platform/3.7/dev_guide/index.html)
+  > Here' s the link to the [OpenShift official Documentation](https://docs.openshift.com/container-platform/3.7/dev_guide/index.html)
+  > Here's the link to [Kubernetes official Documentation](https://kubernetes.io/docs/concepts/)
   
   ## 1. First hand with pods 
   ### Stating with OpenShift
@@ -222,3 +223,49 @@ This is a cheat sheet for deploying applications using *OpenShift*.
   oc exec $(oc get pod -l lab=probe --no-headers | cut -d ' ' -f 1) -- rm //var/run/app/alive
   ```
 
+  ## 7. Resource quotas and requests
+  Checking the ressources quotas
+  ```
+  oc get AppliedClusterResourceQuota 
+  oc describe AppliedClusterResourceQuota
+  ```
+  
+  Specifying CPU & Memory limit
+  ```
+  spec:
+        containers:
+        - args:
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "4Mi"
+            limits:
+              cpu: "${CPU_LIMIT}"
+              memory: "4Mi" # Use the lowest possible memory limit
+  ```
+  
+  ## 8. Pod autoscaling 
+  The autoscaler definition in yaml file
+  ```
+  - apiVersion: autoscaling/v1
+    kind: HorizontalPodAutoscaler
+    metadata:
+      name: dateloop
+    spec:
+      scaleTargetRef:
+        kind: DeploymentConfig
+        name: dateloop
+        apiVersion: v1
+        subresource: scale
+      minReplicas: ${{MIN_REPLICAS}}
+      maxReplicas: ${{MAX_REPLICAS}}
+      cpuUtilization:
+        targetPercentage: ${{CPU_THRESHOLD}}
+     ```
+     
+     Get events of autoscaler
+     ```
+     oc describe hpa/(name:dateloop)
+     ```
+     
+     
