@@ -188,3 +188,37 @@ This is a cheat sheet for deploying applications using *OpenShift*.
   ```
   oc apply -f dynamicTemplateAppFile
   ```
+  
+  ## 6. Application health checks
+  The goal is to detect and handle unhealthy containers. 
+  
+  Adding a readiness probe to the application
+  ```
+  oc set probe (dc/name: dc/dateloop) --readiness --period-seconds (number:2) -- test -f (pathToFile://var/run/app/ready)
+  ```
+  
+  Trigger the temporary failure of the app
+  ```
+  oc exec $(oc get pod -l lab=probe --no-headers | cut -d ' ' -f 1) -- rm //var/run/app/ready
+  ```
+  
+  Adding a liveness probe to the application (kill and restart container to hopefully recover)
+  ```
+  readinessProbe:
+            exec:
+              command:
+              - test
+              - -f
+              - /var/run/app/ready
+            periodSeconds: 2
+          livenessProbe:
+            exec:
+              command:
+              - cat
+              - /var/run/app/alive
+            periodSeconds: 2
+            
+  # Simulating  failure
+  oc exec $(oc get pod -l lab=probe --no-headers | cut -d ' ' -f 1) -- rm //var/run/app/alive
+  ```
+
