@@ -6,7 +6,7 @@ This is a cheat sheet for deploying applications using *OpenShift*.
   
   
   > The used version for this is *oc v3.7.72* \
-  > Here' s the link to the [OpenShift official Documentation](https://docs.openshift.com/container-platform/3.7/dev_guide/index.html)
+  > Here' s the link to the [OpenShift official Documentation](https://docs.openshift.com/container-platform/3.7/dev_guide/index.html) \
   > Here's the link to [Kubernetes official Documentation](https://kubernetes.io/docs/concepts/)
   
   ## 1. First hand with pods 
@@ -261,11 +261,11 @@ This is a cheat sheet for deploying applications using *OpenShift*.
       maxReplicas: ${{MAX_REPLICAS}}
       cpuUtilization:
         targetPercentage: ${{CPU_THRESHOLD}}
-     ```
+  ```
      
-     Get events of autoscaler
-     ```
-     oc describe hpa/(name:dateloop)
-     ```
+  Get events of autoscaler (HPA = Horizontal Pod Autoscaler)
+  ```
+  oc describe hpa/(name:dateloop)
+  ```
      
      
