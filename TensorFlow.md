@@ -13,3 +13,11 @@ It is used for both research and production at Google.
   ```python
   import tensorflow as tf
   ``` 
+  
+  [Downloads a file from a URL](https://www.tensorflow.org/api_docs/python/tf/keras/utils/get_file) if it not already in the cache. 
+  ```python
+  zip_path = tf.keras.utils.get_file(
+      origin='https://storage.googleapis.com/tensorflow/tf-keras-datasets/jena_climate_2009_2016.csv.zip',
+      fname='jena_climate_2009_2016.csv.zip',
+      extract=True)  
+  ``` 
