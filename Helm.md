@@ -10,11 +10,11 @@ This is a cheat sheet for *Helm* a package manager for Kubernetes deployments.
   
   
   > The used version for this is *helm v2.16.5* \
-  > Here' s the link to the [Helm official Documentation](https://helm.sh/docs/) \
+  > Here' s the link to the [Helm official Documentation](https://helm.sh/docs/) 
   
   ## 1. Getting started
   ### Installing  Helm 
-  a. Download the package [from github releases] (https://github.com/helm/helm/releases)
+  a. Download the package [from github releases](https://github.com/helm/helm/releases)
   b. Extract files and move the binaries to your local environment
   ```
   tar -zxvf pathTo/YourHelmPackage.tar.gz
