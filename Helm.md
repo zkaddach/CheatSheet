@@ -14,7 +14,7 @@ This is a cheat sheet for *Helm* a package manager for Kubernetes deployments.
   
   ## 1. Getting started
   ### Installing  Helm 
-  a. Download the package [from github releases](https://github.com/helm/helm/releases)
+  a. Download the package [from github releases](https://github.com/helm/helm/releases) \
   b. Extract files and move the binaries to your local environment
   ```
   tar -zxvf pathTo/YourHelmPackage.tar.gz
@@ -24,3 +24,21 @@ This is a cheat sheet for *Helm* a package manager for Kubernetes deployments.
   ```
   helm help 
   ``` 
+  
+  ### Creating your first own Charts
+  Create the project with basic file structure
+  ```
+  helm create projectName
+  ```
+  Validate that your Chart is well formed
+  ```
+  helm lint 
+  ```
+  Package your Chart up for distribution
+  ```
+  helm package projectName 
+  ```
+  Install Chart from package
+  ```
+  helm install projectName pathTo/ChartPackage-0.1.0.tgz
+  ```
